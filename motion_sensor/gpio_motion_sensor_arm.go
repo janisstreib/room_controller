@@ -1,7 +1,6 @@
 package motion_sensor
 // #cgo LDFLAGS: -lwiringPi
 // #include <wiringPi.h>
-
 import "C"
 
 type GpioMotionSensor struct {
