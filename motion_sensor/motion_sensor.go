@@ -1,5 +1,28 @@
 package motion_sensor
+// #cgo LDFLAGS: -lwiringPi
 
-type motion_sensor interface {
+import "C"
+
+type MotionSensor interface {
 	MotionActive() bool
+}
+
+type GpioMotionSensor struct {
+	pin int
+
+}
+
+func (g GpioMotionSensor) MotionActive() bool {
+	if C.digitalRead(C.int(g.pin)) == 1 {
+		return true
+	}
+	return false
+}
+
+func NewGPIOMotionSensor(pin int) *GpioMotionSensor {
+	g := new(GpioMotionSensor)
+	g.pin = pin
+	C.wiringPiSetupPhys()
+	C.pinMode(C.int(pin), C.INPUT)
+	return g
 }
