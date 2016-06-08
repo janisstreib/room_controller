@@ -1,7 +1,6 @@
-package motion_sensor
-
 // +build !arm
 
+package motion_sensor
 
 type FakeMotionSensor struct {
 }
