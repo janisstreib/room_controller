@@ -21,3 +21,8 @@ func NewGPIOMotionSensor(pin int) *GpioMotionSensor {
 	C.pinMode(C.int(pin), C.INPUT)
 	return g
 }
+
+func NewMotionSensor() MotionSensor {
+	m := NewGPIOMotionSensor(7)
+	return m
+}
